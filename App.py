@@ -11,7 +11,7 @@ def index2():
 
 @App.route("/Name/<string:nombre>")
 def Name(nombre):
-    return "<h1>Hola {nombre}</h1>".format
+    return "Aqui presentaremos un ingreso del usuario"
 
 if __name__ == "__main__":
     App.run(debug=True)
