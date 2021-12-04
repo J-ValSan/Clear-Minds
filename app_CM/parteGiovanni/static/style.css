@@ -25,6 +25,7 @@ body {
     }
     
     div img{
+        background: url(icono_user2.jpg);
         position: relative;
         margin: 0;
         padding: 0;
