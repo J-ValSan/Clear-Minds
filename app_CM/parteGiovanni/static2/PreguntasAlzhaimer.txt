@@ -1,0 +1,5 @@
+¿El Alzheimer es la forma más común de demencia?| Si, lo es.$| No, existe otra demencia que es más común.
+¿El Alzheimer tiene cura?| No tiene cura, pero sí tratamientos que ayudan a vivir con los síntomas.$| Si, tiene cura.| No tiene cura ni tratamientos. 
+¿Cuáles de estos son síntomas del Alzheimer?| Deterioro de la memoria, dificultad para concentrarse, cambios de humor, problemas de lenguaje.$| Deterioro de la memoria, tristeza, dolores de cabeza, cambios de humor.| Cambios de humor, mareos, problemas de lenguaje.| Dificultad para concentrarse, falta de energía, agresividad. 
+¿El Alzheimer es el único tipo de demencia que causa daño progresivo al cerebro?| Falso.$| Verdadero. 
+¿Desde qué edad es más común que una persona padezca Alzheimer?| Desde los 65 años.$| Desde los 80 años.| Desde los 45 años.| Desde los 50 años.
