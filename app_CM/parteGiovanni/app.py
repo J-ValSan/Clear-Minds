@@ -133,6 +133,44 @@ def resultJunto(enfermedad):
 
 	return render_template("preguntasJuntas.html", preguntas = preguntas)
 
+"""
+ACA ESTA LO ULTIMO DE LA GRABACION DE AYUDANTIA
+
+@app.route('/resultados/', methods=['GET'])
+def resultados():
+	enfermedad = request.args.get('enfermedad')
+    respuestas = request.args.get('respuestas')
+    l_respuestas = list(respuestas)
+
+    file = open(f"static/preguntas_{enfermedad}.txt", encoding="utf-8")
+	lineas = file.readlines()
+	file.close()
+
+	preguntas = []
+	id = 0
+	for linea in lineas:
+		data = linea.strip().split("|")
+		pregunta = data[0] #Pregunta
+		respuestas = data[1:-1] #Respuestas
+		correcta = data[-1] #Indice de la respuesta correcta
+		# Creamos un diccionario con la pregunta y sus respuestas
+		dic = {
+			"id": id, 
+			"pregunta": pregunta, 
+			"respuesta": respuestas[ int( l_respuestas[id] ) ], 
+			"correcta": int(correcta)==int(l_respuestas[id])
+			}
+		# Añadimos el diccionario al array de preguntas
+		preguntas.append(dic)
+
+		id+=1
+
+	return render_template("resultado.html", respuestas = preguntas)
+
+"""
+
+
 
 if __name__ == "__main__":
 	app.run(debug=True)
+
