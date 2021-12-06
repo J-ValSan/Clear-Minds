@@ -1,16 +1,23 @@
 
+
+
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Preguntas</title>
-		<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+		<link rel="stylesheet" href="{{url_for('static', filename='preguntasestilo.css')}}">
+
 	</head>
+
 	<body>
+
+
 		<form action="." method="post">
 			{% for pregunta in preguntas %}
-			<div style="background-color: rgb(193, 245, 255); margin: 5px;" class="quiz-container" id="quiz">
+			<div style="background-image: linear-gradient(350deg,  #7cb0fd 0%, #aefdfd 100%); margin: 5px;" class="quiz-container" id="quiz">
 				<h1>{{ pregunta.pregunta }}</h1>
 				<input type="number" name="correcta-{{pregunta.id}}" value="{{ pregunta.correcta }}" hidden>
 				<ul>
@@ -19,6 +26,7 @@
 							<input type="radio" name="respuesta-{{pregunta.id}}" id="respuesta-{{loop.index}}-{{pregunta.id}}" value="{{loop.index}}">
 							<label for="respuesta-{{loop.index}}-{{pregunta.id}}">{{ respuesta }}</label>
 						</li>
+						<br />
 					{% endfor %}
 				</ul>
 			</div>
