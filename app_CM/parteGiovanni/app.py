@@ -62,11 +62,13 @@ def registro():
 def principal():
     return render_template('principal.html')
 
-
 @app.route('/fuentes', methods=['GET', 'POST'])
 def fuentes():
     return render_template('fuentes.html')
-
+	
+@app.route('/resultados', methods=['GET', 'POST'])
+def resultados():
+    return render_template('resultado.html')
 
 @app.route("/")
 def index():
@@ -105,8 +107,8 @@ def resultJunto(enfermedad):
 
         # Aqui es donde guardariamos la información en base de datos
         exp = val*10.36
-        print(exp)
-        return str(exp)
+        return render_template('resultado.html', experiencia=exp, hola="hola", aciertos=val)
+		
 
     # Supongamos los archivos estan en /static/
     # y se llama usuario_NOMBRE.txt
