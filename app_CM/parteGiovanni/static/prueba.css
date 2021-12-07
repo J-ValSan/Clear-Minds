@@ -1,0 +1,61 @@
+
+body{
+    margin: 20px;
+    padding: 50px;
+    background-image: linear-gradient(800deg,  #94bdfa 20%, #a8fdfd 100%);
+    font-family: -apple-system;
+    justify-content: center;
+    display: flex;
+    height: auto;
+
+
+
+    }
+
+    .tablita{
+    border-radius: 10px;
+    width: 690px;
+    height: auto;
+    margin: 90px;
+    box-shadow: 5px 5px 10px rgb(255, 255, 171);
+    background-image: linear-gradient(350deg,  #94bdfa 30%, #a8fdfd 90%);
+    }
+
+    table {
+        margin-left: 50px;
+        margin-right: 10px;
+        margin-top: 10px;
+    }
+    
+
+    h1{
+    color: black;
+    text-shadow: 5px 5px 10px rgb(255, 255, 172);
+    border-radius: 5px;
+    padding: 8px 15px;
+    
+    }
+
+    button{
+        border-radius: 10px;
+        background-color: #03cae4;
+        box-shadow: 1px 1px 10px rgb(11, 255, 231);
+        color: #fff;
+        border: none;
+        width: 116%;
+        margin-left: -9%;
+        cursor: pointer;
+        font-size: 1.1rem;
+        font-family: inherit;
+        padding: 1.3rem;
+      }
+      
+      button:hover{
+        background-color: #04adc4;
+      }
+      button:focus{
+        outline: none;
+        background-color: #44b927;
+      }
+
+
