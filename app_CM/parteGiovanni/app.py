@@ -1,10 +1,9 @@
-
-
 import re
+
+from flask import Flask, redirect, render_template, request, session, url_for
+from flask_mysqldb import MySQL, MySQLdb
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import redirect
-from flask import Flask, render_template, request, redirect, url_for, session
-from flask_mysqldb import MySQL, MySQLdb
 
 
 app = Flask(__name__)
@@ -18,159 +17,126 @@ app.config['SESSION_TYPE'] = 'filesystem'
 mysql = MySQL(app)
 
 
-@app.route('/login', methods= ["GET", "POST"])
+@app.route('/login', methods=["GET", "POST"])
 def login():
-	if request.method == "POST":
-		email = request.form['email']
-		password = request.form['password']
+    if request.method == "POST":
+        email = request.form['email']
+        password = request.form['password']
 
-		cur = mysql.connection.cursor()
-		cur.execute("SELECT * FROM users WHERE email=%s",(email,))
-		user = cur.fetchone()
-		cur.close()
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT * FROM users WHERE email=%s", (email,))
+        user = cur.fetchone()
+        cur.close()
 
-		if len(user)>0:
-			if password == user["password"]:
-				session['name'] = user['name']
-				session['email'] = user['email']
-				return render_template("principal.html")
-			else:
-				return "Error, Correo o contraseña no valida"
-		else:
-			return "No existe el usuario"
-	else:
-		return render_template("login.html")
+        if len(user) > 0:
+            if password == user["password"]:
+                session['name'] = user['name']
+                session['email'] = user['email']
+                return render_template("principal.html")
+            else:
+                return "Error, Correo o contraseña no valida"
+        else:
+            return "No existe el usuario"
+    else:
+        return render_template("login.html")
 
 
-@app.route('/registro', methods = ["GET", "POST"])
+@app.route('/registro', methods=["GET", "POST"])
 def registro():
 
-	if request.method == "GET":
-		return render_template("registro.html")
-	else:
-		name = request.form['name']
-		email = request.form['email']
-		password = request.form['password']
+    if request.method == "GET":
+        return render_template("registro.html")
+    else:
+        name = request.form['name']
+        email = request.form['email']
+        password = request.form['password']
 
-		cur = mysql.connection.cursor()
-		cur.execute("INSERT INTO users(name, email, password) VALUES (%s, %s, %s)", (name, email, password))
-		mysql.connection.commit()
-		return redirect(url_for('login'))
+        cur = mysql.connection.cursor()
+        cur.execute(
+            "INSERT INTO users(name, email, password) VALUES (%s, %s, %s)", (name, email, password))
+        mysql.connection.commit()
+        return redirect(url_for('login'))
 
 
-@app.route('/principal', methods = ['GET' ,'POST'])
+@app.route('/principal', methods=['GET', 'POST'])
 def principal():
-	return render_template('principal.html')
+    return render_template('principal.html')
 
 
-@app.route('/fuentes', methods= ['GET' ,'POST'])
+@app.route('/fuentes', methods=['GET', 'POST'])
 def fuentes():
-	return render_template('fuentes.html')
-
+    return render_template('fuentes.html')
 
 
 @app.route("/")
 def index():
-	return render_template("index.html")
+    return render_template("index.html")
 
 
 @app.route('/preguntasJuntas/<enfermedad>/', methods=['POST', 'GET'])
 def resultJunto(enfermedad):
-	
-	file = open(f"static/preguntas_{enfermedad}.txt", encoding="utf-8")
-	lineas = file.readlines()
-	file.close()
-
-	if( request.method == 'POST' ):
-
-		resultado = {}
-		
-		for id in range(len(lineas)):
-
-			if id not in resultado:
-				resultado[id] = []
-			
-			respuestaCorrecta_id = request.form.get("correcta-"+str(id))
-			respuestaSelecta_id = request.form.get("respuesta-"+str(id))
-
-			if( respuestaSelecta_id == None ):
-				return redirect("/preguntasJuntas/"+enfermedad+"/")
-
-			if( respuestaSelecta_id == respuestaCorrecta_id ):
-				resultado[id].append(True)
-			else:
-				resultado[id].append(False)
-
-		# Aqui es donde guardariamos la información en base de datos
-		print(resultado)
-		return str(resultado)
-
-	# Supongamos los archivos estan en /static/
-	# y se llama usuario_NOMBRE.txt
-	# y su formato es por fila es:
-	# 	<PREGUNTA>|<RESPUESTA>|<RESPUESTA>|<RESPUESTA>|<RESPUESTA>|<INDICE_RESPUESTA_CORRECTA>
-	#ej:¿Estas Triste?|Si|No|Tal vez|No lo se|1
-
-	preguntas = []
-	id = 0
-	for linea in lineas:
-		data = linea.strip().split("|")
-		pregunta = data[0] #Pregunta
-		respuestas = data[1:-1] #Respuestas
-		correcta = data[-1] #Indice de la respuesta correcta
-		
-		# Creamos un diccionario con la pregunta y sus respuestas
-		dic = {
-			"id": id, 
-			"pregunta": pregunta, 
-			"respuestas": respuestas, 
-			"correcta": correcta
-			}
-
-		# Añadimos el diccionario al array de preguntas
-		preguntas.append(dic)
-		id+=1
-
-	return render_template("preguntasJuntas.html", preguntas = preguntas)
-
-"""
-ACA ESTA LO ULTIMO DE LA GRABACION DE AYUDANTIA
-
-@app.route('/resultados/', methods=['GET'])
-def resultados():
-	enfermedad = request.args.get('enfermedad')
-    respuestas = request.args.get('respuestas')
-    l_respuestas = list(respuestas)
 
     file = open(f"static/preguntas_{enfermedad}.txt", encoding="utf-8")
-	lineas = file.readlines()
-	file.close()
+    lineas = file.readlines()
+    file.close()
 
-	preguntas = []
-	id = 0
-	for linea in lineas:
-		data = linea.strip().split("|")
-		pregunta = data[0] #Pregunta
-		respuestas = data[1:-1] #Respuestas
-		correcta = data[-1] #Indice de la respuesta correcta
-		# Creamos un diccionario con la pregunta y sus respuestas
-		dic = {
-			"id": id, 
-			"pregunta": pregunta, 
-			"respuesta": respuestas[ int( l_respuestas[id] ) ], 
-			"correcta": int(correcta)==int(l_respuestas[id])
-			}
-		# Añadimos el diccionario al array de preguntas
-		preguntas.append(dic)
+    if(request.method == 'POST'):
 
-		id+=1
+        exp = 0
+        val = 0
+        resultado = {}
 
-	return render_template("resultado.html", respuestas = preguntas)
+        for id in range(len(lineas)):
 
-"""
+            if id not in resultado:
+                resultado[id] = []
+
+            respuestaCorrecta_id = request.form.get("correcta-"+str(id))
+            respuestaSelecta_id = request.form.get("respuesta-"+str(id))
+
+            if(respuestaSelecta_id == None):
+                return redirect("/preguntasJuntas/"+enfermedad+"/")
+
+            if(respuestaSelecta_id == respuestaCorrecta_id):
+                resultado[id].append(True)
+                val += 1
+            else:
+                resultado[id].append(False)
+
+        # Aqui es donde guardariamos la información en base de datos
+        exp = val*10.36
+        print(exp)
+        return str(exp)
+
+    # Supongamos los archivos estan en /static/
+    # y se llama usuario_NOMBRE.txt
+    # y su formato es por fila es:
+    # 	<PREGUNTA>|<RESPUESTA>|<RESPUESTA>|<RESPUESTA>|<RESPUESTA>|<INDICE_RESPUESTA_CORRECTA>
+    # ej:¿Estas Triste?|Si|No|Tal vez|No lo se|1
+
+    preguntas = []
+    id = 0
+    for linea in lineas:
+        data = linea.strip().split("|")
+        pregunta = data[0]  # Pregunta
+        respuestas = data[1:-1]  # Respuestas
+        correcta = data[-1]  # Indice de la respuesta correcta
+
+        # Creamos un diccionario con la pregunta y sus respuestas
+        dic = {
+            "id": id,
+            "pregunta": pregunta,
+            "respuestas": respuestas,
+            "correcta": correcta
+        }
+
+        # Añadimos el diccionario al array de preguntas
+        preguntas.append(dic)
+        id += 1
+
+    return render_template("preguntasJuntas.html", preguntas=preguntas)
 
 
 
 if __name__ == "__main__":
-	app.run(debug=True)
-
+    app.run(debug=True)
