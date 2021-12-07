@@ -1,0 +1,5 @@
+¿Se sabe cuál es la causa de la esquizofrenia en una persona?| No, no se sabe con claridad que lo provoca.| Sí, sí se sabe que es lo que lo causa.|1
+¿Existe cura para la esquizofrenia?| Si, y hay tratamiento| No, no hay cura disponible, pero si tratamiento.|2
+¿Cuál es la característica principal de la esquizofrenia?| Insomnio.| Déficit de atención.| Alucinaciones.|  Pensamientos irreales.|4
+¿Las personas que padecen de esquizofrenia son peligrosas?| Las personas que padecen de esquizofrenia no son peligrosas.| Las personas que padecen de esquizofrenia son peligrosas.|1
+¿Cuáles de los siguientes comportamientos son indicadores de esquizofrenia temprana?| Sentimiento constante que lo observan.| Oír o ver cosas que no están en realidad.| Todas las anteriores.| Deterioro de los esfuerzos laborales o académicos.|3
