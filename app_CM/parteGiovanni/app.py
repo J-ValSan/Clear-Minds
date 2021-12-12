@@ -1,5 +1,7 @@
 
 
+
+
 import re
 
 from flask import Flask, redirect, render_template, request, session, url_for
@@ -7,7 +9,6 @@ from flask_mysqldb import MySQL, MySQLdb
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import redirect
 
-exp = 0
 
 app = Flask(__name__)
 app.secret_key = "This is my secret Key"
@@ -18,8 +19,9 @@ app.config['MYSQL_DB'] = 'app_cm'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 app.config['SESSION_TYPE'] = 'filesystem'
 mysql = MySQL(app)
+exp = 0
 
-
+# PARETE DEL LOGIN
 @app.route('/login', methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -35,7 +37,7 @@ def login():
             if password == user["password"]:
                 session['name'] = user['name']
                 session['email'] = user['email']
-                return render_template("principal.html")
+                return render_template("principal.html", nombre=session['name'], experiencia=exp)
             else:
                 return "Error, Correo o contraseña no valida"
         else:
@@ -43,9 +45,10 @@ def login():
     else:
         return render_template("login.html")
 
-
+# PARTE DEL REGISTRO
 @app.route('/registro', methods=["GET", "POST"])
 def registro():
+
 
     if request.method == "GET":
         return render_template("registro.html")
@@ -63,7 +66,8 @@ def registro():
 
 @app.route('/principal', methods=['GET', 'POST'])
 def principal():
-    return render_template('principal.html')
+    nombre = session['name']
+    return render_template('principal.html', nombre=nombre)
 
 
 @app.route('/fuentes', methods=['GET', 'POST'])
@@ -78,7 +82,7 @@ def resultados():
 
 @app.route("/")
 def index():
-    return render_template("principal.html")
+    return render_template("login.html")
 
 
 @app.route('/preguntasJuntas/<enfermedad>/', methods=['POST', 'GET'])
@@ -110,7 +114,6 @@ def resultJunto(enfermedad):
         exp = val*10.36
         return render_template('resultado.html', experiencia=exp, aciertos=val, tot=total)
 
-    # Supongamos los archivos estan en /static/
     # y se llama usuario_NOMBRE.txt
     # y su formato es por fila es:
     # 	<PREGUNTA>|<RESPUESTA>|<RESPUESTA>|<RESPUESTA>|<RESPUESTA>|<INDICE_RESPUESTA_CORRECTA>
@@ -141,5 +144,3 @@ def resultJunto(enfermedad):
 
 if __name__ == "__main__":
     app.run(debug=True)
-    
-    
