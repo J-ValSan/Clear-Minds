@@ -1,0 +1,41 @@
+
+
+
+{% block content %}
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='sfuentes.css')}}">
+        <title> Nuestras Fuentes </title>
+
+    </head>
+
+    <body>
+
+        <div>
+            <h1>Nuestras Fuentes</h1>
+
+            <table>
+                <tr>
+                    <td><img src="static/mayoclinic.jpg" alt="mayoclinic"></td>
+                    <td><img src="static/minsal.png" alt="minsal"></td>
+                </tr>
+
+                <tr>
+                    <td><img src="static/medinePlus.png" alt="medinePlus"></td>
+
+                    <td><img src="static/medicalNewsToday.png" alt="medicalNewsToday"></td>
+                </tr>
+
+            </table>
+        </div>
+
+    </body>
+
+
+    </html>
+
+{% endblock %}

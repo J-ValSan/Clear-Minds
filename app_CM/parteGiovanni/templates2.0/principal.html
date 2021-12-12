@@ -1,0 +1,81 @@
+
+
+{% block content %}
+
+    <!DOCTYPE html>
+    <html action="/principal">
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> Clear Minds </title>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+
+    </head>
+
+
+    <body>
+        <div>
+        <h1>Clear Minds</h1>
+        <img src="static/icono_user2.jpg" alt="icono">
+        
+        <div class="nombrecito">
+            <h4>{{ nombre }}</h4>
+        </div>
+
+            <!-- ENTER LOG IN ("BOTON ACTIVADOR")-->
+            <div class="QuienesSomos">
+            <h5>
+                <a href="">
+                <table>
+                    <tr>
+                    <td><a href="/fuentes" target="_blank" style="text-decoration:none" color="lightgoldenrodyellow"><center>Nuestras Fuentes</center></font></a></td>
+                    <td><a href="https://drive.google.com/file/d/17zpH6BU-v2NHmieJXl52L4dZNxmwKirH/view" target="_blank" style="text-decoration:none" color="lightgoldenrodyellow"><center>Nuestro Objetivo</center></font></a></td>                
+                    </tr>
+                </table>
+                </a>
+            </h5>
+            </div>
+            <br />
+
+            <!-- TABLA CON LA PALABRAS -->
+            <table class="conespacio" border="1">
+
+            <tr>
+            <td><center><a href="preguntasJuntas/Depresion" style="text-decoration:none">Depresion</a></center></td>
+            <td><center><a href="preguntasJuntas/Ansiedad" style="text-decoration:none">Ansiedad</a></center></td>
+            <td><center><a href="preguntasJuntas/Bipolaridad" style="text-decoration:none">Bipolaridad</a></center></td>
+            </tr>
+
+            <tr>
+            <td><center><a href="preguntasJuntas/Esquizofrenia" style="text-decoration:none">Esquizofrenia</a></center></td>
+            <td><center><a href="preguntasJuntas/TOC" style="text-decoration:none">TOC</a></center></td>
+            <td><center><a href="preguntasJuntas/ConductasAgresivas" style="text-decoration:none">Autoagresividad</a></center></td>
+            </tr>
+            
+            <tr>
+            <td><center><a href="preguntasJuntas/Estres" style="text-decoration:none">Estres</a></center></td>
+            <td><center><a href="preguntasJuntas/DisforiaDeGenero" style="text-decoration:none">Disforia de genero</a></center></td>
+            <td><center><a href="preguntasJuntas/Alzheimer" style="text-decoration:none">Alzheimer</a></center></td>
+            </tr>
+            
+            <tr>
+            <td><center><a href="preguntasJuntas/Autismo" style="text-decoration:none">Espectro Autista</a></center></td>
+            <td><center><a href="preguntasJuntas/DeficitAtencional" style="text-decoration:none">Deficit Atencional</a></center></td>
+            <td><center><a href="preguntasJuntas/Demencia" style="text-decoration:none">Demencia</a></center></td>
+            </tr>
+            
+            <tr>
+            <td><center><a href="preguntasJuntas/Autocuidado" style="text-decoration:none">Autocuidado</a></center></td>
+            <td><center><a href="preguntasJuntas/Anorexia" style="text-decoration:none">Anorexia</a></center></td>
+            <td><center><a href="preguntasJuntas/Bulimia" style="text-decoration:none">Bulimia</a></center></td>
+            </tr>
+            </table>
+            
+        </div>
+    </body>
+    </html>
+
+
+{% endblock %}

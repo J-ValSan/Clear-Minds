@@ -1,0 +1,31 @@
+
+
+
+
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='master.css')}}">
+	<div class="registro">
+		<form class="form" action="/registro" method="POST">
+			<h1 class="form_titulo">Create Account</h1><br>
+
+			<div class="form-group">
+
+				<label>Nombre:</label>
+				<input type="text" placeholder="Create your Username" class="form_input" name="name" id="name"><br />
+
+				<label>Email:</label>
+				<input type="email" placeholder="Insert your Email" class="form_input" name="email"><br />
+
+
+				<label>Contraseña:</label>
+				<input type="password" placeholder="Create your Password" class="form_input" name="password"><br />
+
+				<input type="submit" class="button" value="Sign up"></input>	
+
+			</div>
+            
+		</form>
+	</div>
+
+{% endblock %}
