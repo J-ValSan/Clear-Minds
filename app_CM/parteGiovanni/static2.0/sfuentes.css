@@ -1,0 +1,86 @@
+
+
+body{
+    margin: 20;
+    padding: 20;
+    box-sizing: border-box;
+    background: url(m.jpg) no-repeat center top;
+    background-size: cover;
+    font-family: -apple-system;
+    height: 100vh;
+    position: relative;
+
+    }
+
+
+    div h1{
+        font-size: 50px;
+        display: inline-block;
+        position: relative;
+        color: lightyellow;
+        font-family: -apple-system;
+        right: -550px;
+        top: 40px;
+        text-shadow: 1px 1px 10px black;
+    }
+
+    div h1::after , div h1::before{
+        content: '';
+        position: absolute;
+        width: 120;
+        height: 3px;
+        background-color: currentColor;
+        top: 0,6em;
+    }
+
+    div table {
+        border-collapse: separate;
+        border-spacing: 70px;
+        width: 200px;
+        height: 300px;
+        margin: 65px;
+        position: absolute;
+        top: 50px;
+        right: 400px;
+        position: 20px;
+    }
+
+    div table tr td {
+        color: lightgoldenrodyellow;
+        box-shadow: 1px 1px 3px black;
+        border-radius: 5px;
+        background-color: lightskyblue;
+        padding: 5px;
+        box-shadow: 1px 1px 20px rgb(6, 91, 97)
+    
+    }
+
+    div img{
+        background: url(mayoclinic.JPG);
+        position: relative;
+        width: 210px;
+        height: 170px;
+        box-shadow: 1px 1px 20px black;
+    }
+
+    div img{
+        background: url(medicalNewsToday.png);
+        position: relative;
+        width: 210px;
+        height: 170px;
+        box-shadow: 1px 1px 20px black;
+    }
+    div img{
+        background: url(medinePlus.png);
+        position: relative;
+        width: 210px;
+        height: 170px;
+        box-shadow: 1px 1px 20px black;
+    }
+    div img{
+        background: url(minsal.png);
+        position: relative;
+        width: 210px;
+        height: 170px;
+        box-shadow: 1px 1px 20px black;
+    }
