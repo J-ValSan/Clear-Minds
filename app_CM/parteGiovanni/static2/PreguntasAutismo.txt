@@ -1,6 +1,0 @@
-"Los síntomas son los mismos para cada persona".| Falso, son diferentes para cada persona.$| Verdadero, son los mismos para cada persona.
-¿Desde cuándo se comienza a desarrollar el trastorno del espectro autista?| Desde niños.$| Desde la adolescencia.| Desde la adultez.| No tiene una edad específica. 
-¿Cuál puede ser un signo del trastorno del espectro autista?| Todas las anteriores.$| No señala ni atrae objetos para compartir sus intereses.| No habla o tiene un desarrollo tardío del habla, o bien pierde la capacidad que tenía para decir palabras u oraciones.| No parece entender preguntas o indicaciones simples.
-¿Existen factores de riesgo para el desarrollo del trastorno del espectro autista?| Si, existen factores de riesgo, tales como factores ambientales, biológicos y genéticos.$| No, no hay factores de riesgo de ningún tipo.
-¿Existe un tratamiento estándar?| No, para cada persona pueden ser distintos tratamientos, como terapias de comportamiento y de comunicación.$| Si, ya se desarrolló un tratamiento estándar.| No, todavía no se ha desarrollado ningún tipo de tratamiento.
-  
