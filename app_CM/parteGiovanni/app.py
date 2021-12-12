@@ -1,3 +1,5 @@
+
+
 import re
 
 from flask import Flask, redirect, render_template, request, session, url_for
@@ -5,6 +7,7 @@ from flask_mysqldb import MySQL, MySQLdb
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import redirect
 
+exp = 0
 
 app = Flask(__name__)
 app.secret_key = "This is my secret Key"
@@ -62,17 +65,20 @@ def registro():
 def principal():
     return render_template('principal.html')
 
+
 @app.route('/fuentes', methods=['GET', 'POST'])
 def fuentes():
     return render_template('fuentes.html')
-	
+
+
 @app.route('/resultados', methods=['GET', 'POST'])
 def resultados():
     return render_template('resultado.html')
 
+
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("principal.html")
 
 
 @app.route('/preguntasJuntas/<enfermedad>/', methods=['POST', 'GET'])
@@ -83,11 +89,9 @@ def resultJunto(enfermedad):
     file.close()
 
     if(request.method == 'POST'):
-
-        exp = 0
         val = 0
         resultado = {}
-
+        total = 0
         for id in range(len(lineas)):
 
             if id not in resultado:
@@ -96,19 +100,15 @@ def resultJunto(enfermedad):
             respuestaCorrecta_id = request.form.get("correcta-"+str(id))
             respuestaSelecta_id = request.form.get("respuesta-"+str(id))
 
-            if(respuestaSelecta_id == None):
-                return redirect("/preguntasJuntas/"+enfermedad+"/")
-
             if(respuestaSelecta_id == respuestaCorrecta_id):
                 resultado[id].append(True)
                 val += 1
             else:
                 resultado[id].append(False)
-
+            total += 1
         # Aqui es donde guardariamos la información en base de datos
         exp = val*10.36
-        return render_template('resultado.html', experiencia=exp, hola="hola", aciertos=val)
-		
+        return render_template('resultado.html', experiencia=exp, aciertos=val, tot=total)
 
     # Supongamos los archivos estan en /static/
     # y se llama usuario_NOMBRE.txt
@@ -139,6 +139,7 @@ def resultJunto(enfermedad):
     return render_template("preguntasJuntas.html", preguntas=preguntas)
 
 
-
 if __name__ == "__main__":
     app.run(debug=True)
+    
+    
