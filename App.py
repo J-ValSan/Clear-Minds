@@ -1,4 +1,7 @@
 
+
+
+
 import re
 
 from flask import Flask, redirect, render_template, request, session, url_for
@@ -6,7 +9,6 @@ from flask_mysqldb import MySQL, MySQLdb
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import redirect
 
-exp = 0
 
 app = Flask(__name__)
 app.secret_key = "This is my secret Key"
@@ -64,16 +66,13 @@ def registro():
 def principal():
     return render_template('principal.html')
 
-
 @app.route('/fuentes', methods=['GET', 'POST'])
 def fuentes():
     return render_template('fuentes.html')
-
-
+	
 @app.route('/resultados', methods=['GET', 'POST'])
 def resultados():
     return render_template('resultado.html')
-
 
 @app.route("/")
 def index():
@@ -88,7 +87,10 @@ def resultJunto(enfermedad):
     file.close()
 
     if(request.method == 'POST'):
+
+        exp = 0
         val = 0
+        
         resultado = {}
 
         for id in range(len(lineas)):
@@ -110,7 +112,8 @@ def resultJunto(enfermedad):
 
         # Aqui es donde guardariamos la información en base de datos
         exp = val*10.36
-        return render_template('resultado.html', experiencia=exp, hola="hola", aciertos=val)
+        return render_template('resultado.html', experiencia=exp, aciertos=val)
+		
 
     # Supongamos los archivos estan en /static/
     # y se llama usuario_NOMBRE.txt
@@ -141,5 +144,11 @@ def resultJunto(enfermedad):
     return render_template("preguntasJuntas.html", preguntas=preguntas)
 
 
+
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+
+
+
